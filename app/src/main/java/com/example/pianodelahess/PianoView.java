@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class PianoView extends View {
 
     public static final int NB = 14;
-    private Paint black, yellow, white;
+    private Paint black, gray, white;
     private ArrayList<Key> whites = new ArrayList<>();
     private ArrayList<Key> blacks = new ArrayList<>();
     private int keyWidth, height;
@@ -29,9 +29,9 @@ public class PianoView extends View {
         white = new Paint();
         white.setColor(Color.WHITE);
         white.setStyle(Paint.Style.FILL);
-        yellow = new Paint();
-        yellow.setColor(Color.YELLOW);
-        yellow.setStyle(Paint.Style.FILL);
+        gray = new Paint();
+        gray.setColor(Color.GRAY);
+        gray.setStyle(Paint.Style.FILL);
         soundPlayer = new AudioSoundPlayer(context);
     }
 
@@ -65,7 +65,7 @@ public class PianoView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         for (Key k : whites) {
-            canvas.drawRect(k.rect, k.down ? yellow : white);
+            canvas.drawRect(k.rect, k.down ? gray : white);
         }
 
         for (int i = 1; i < NB; i++) {
@@ -73,7 +73,7 @@ public class PianoView extends View {
         }
 
         for (Key k : blacks) {
-            canvas.drawRect(k.rect, k.down ? yellow : black);
+            canvas.drawRect(k.rect, k.down ? gray : black);
         }
     }
 
