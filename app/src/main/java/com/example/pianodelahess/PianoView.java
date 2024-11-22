@@ -79,26 +79,40 @@ public class PianoView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int action = event.getAction();
-        boolean isDownAction = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE;
+        int action = event.getActionMasked(); // Utilise `getActionMasked` pour gérer multi-touches
+        int pointerIndex = event.getActionIndex(); // Indique quel pointeur est en action
 
+        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN || action == MotionEvent.ACTION_MOVE) {
+            // Gère les pointeurs actifs
+            for (int i = 0; i < event.getPointerCount(); i++) {
+                float x = event.getX(i);
+                float y = event.getY(i);
 
-        for (int touchIndex = 0; touchIndex < event.getPointerCount(); touchIndex++) {
-            float x = event.getX(touchIndex);
-            float y = event.getY(touchIndex);
-
-            Key k = keyForCoords(x, y);
-
-            if (k != null && isDownAction && !k.isPlaying) {
-                k.down = true;
-                k.isPlaying = true; // Marque la note comme en cours de lecture
-                soundPlayer.playNote(k.sound);
-                invalidate();
+                Key k = keyForCoords(x, y);
+                if (k != null && !k.isPlaying) {
+                    k.down = true;
+                    k.isPlaying = true;
+                    soundPlayer.playNote(k.sound);
+                    invalidate();
+                }
             }
         }
 
-        if (action == MotionEvent.ACTION_UP) {
-            resetKeys();
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
+            // Relâche seulement la touche du pointeur actif
+            float x = event.getX(pointerIndex);
+            float y = event.getY(pointerIndex);
+
+            Key k = keyForCoords(x, y);
+            if (k != null) {
+                k.down = false;
+                k.isPlaying = false;
+            }
+
+            // Réinitialise toutes les touches si nécessaire
+            if (action == MotionEvent.ACTION_UP) {
+                resetKeys();
+            }
         }
 
         return true;
