@@ -12,31 +12,55 @@ public class AudioSoundPlayer {
     // Map des noms de fichiers associés aux notes
     private static final SparseArray<String> SOUND_MAP = new SparseArray<>();
 
-    static {
-        SOUND_MAP.put(1, "note_do.mp3");
-        SOUND_MAP.put(2, "note_re.mp3");
-        SOUND_MAP.put(3, "note_mi.mp3");
-        SOUND_MAP.put(4, "note_fa.mp3");
-        SOUND_MAP.put(5, "note_sol.mp3");
-        SOUND_MAP.put(6, "note_la.mp3");
-        SOUND_MAP.put(7, "note_si.mp3");
-        SOUND_MAP.put(8, "second_do.mp3");
-        SOUND_MAP.put(9, "second_re.mp3");
-        SOUND_MAP.put(10, "second_mi.mp3");
-        SOUND_MAP.put(11, "second_fa.mp3");
-        SOUND_MAP.put(12, "second_sol.mp3");
-        SOUND_MAP.put(13, "second_la.mp3");
-        SOUND_MAP.put(14, "second_si.mp3");
-        SOUND_MAP.put(15, "do_dies.mp3");
-        SOUND_MAP.put(16, "re_dies.mp3");
-        SOUND_MAP.put(17, "fa_dies.mp3");
-        SOUND_MAP.put(18, "sol_dies.mp3");
-        SOUND_MAP.put(19, "la_dies.mp3");
-        SOUND_MAP.put(20, "second_dies_do.mp3");
-        SOUND_MAP.put(21, "second_dies_re.mp3");
-        SOUND_MAP.put(22, "second_dies_fa.mp3");
-        SOUND_MAP.put(23, "second_dies_sol.mp3");
-        SOUND_MAP.put(24, "second_dies_la.mp3");
+    public void setInstrument(String instrument) {
+        SOUND_MAP.clear(); // Efface les sons actuels
+
+        switch (instrument) {
+            case "Piano":
+                SOUND_MAP.put(1, "note_do.mp3");
+                SOUND_MAP.put(2, "note_re.mp3");
+                SOUND_MAP.put(3, "note_mi.mp3");
+                SOUND_MAP.put(4, "note_fa.mp3");
+                SOUND_MAP.put(5, "note_sol.mp3");
+                SOUND_MAP.put(6, "note_la.mp3");
+                SOUND_MAP.put(7, "note_si.mp3");
+                SOUND_MAP.put(8, "second_do.mp3");
+                SOUND_MAP.put(9, "second_re.mp3");
+                SOUND_MAP.put(10, "second_mi.mp3");
+                SOUND_MAP.put(11, "second_fa.mp3");
+                SOUND_MAP.put(12, "second_sol.mp3");
+                SOUND_MAP.put(13, "second_la.mp3");
+                SOUND_MAP.put(14, "second_si.mp3");
+                SOUND_MAP.put(15, "do_dies.mp3");
+                SOUND_MAP.put(16, "re_dies.mp3");
+                SOUND_MAP.put(17, "fa_dies.mp3");
+                SOUND_MAP.put(18, "sol_dies.mp3");
+                SOUND_MAP.put(19, "la_dies.mp3");
+                SOUND_MAP.put(20, "second_dies_do.mp3");
+                SOUND_MAP.put(21, "second_dies_re.mp3");
+                SOUND_MAP.put(22, "second_dies_fa.mp3");
+                SOUND_MAP.put(23, "second_dies_sol.mp3");
+                SOUND_MAP.put(24, "second_dies_la.mp3");
+                break;
+
+            case "Guitare":
+                SOUND_MAP.put(1, "guitar_do.mp3");
+                SOUND_MAP.put(2, "guitar_re.mp3");
+                // Ajouter les autres sons de guitare
+                break;
+
+            case "Violoncelle":
+                SOUND_MAP.put(1, "cello_do.mp3");
+                SOUND_MAP.put(2, "cello_re.mp3");
+                // Ajouter les autres sons de violoncelle
+                break;
+
+            case "Flûte":
+                SOUND_MAP.put(1, "flute_do.mp3");
+                SOUND_MAP.put(2, "flute_re.mp3");
+                // Ajouter les autres sons de flûte
+                break;
+        }
     }
 
     public AudioSoundPlayer(Context context) {
@@ -67,14 +91,14 @@ public class AudioSoundPlayer {
             }
         }}
 
-        // Supprime l'option d'arrêt manuel (inutile si le fichier joue toujours entièrement)
-        // Fonction disponible si nécessaire mais non utilisée par défaut
-        public void stopNote (int note){
-            MediaPlayer mediaPlayer = playerMap.get(note);
-            if (mediaPlayer != null) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                playerMap.remove(note);
-            }
+    // Supprime l'option d'arrêt manuel (inutile si le fichier joue toujours entièrement)
+    // Fonction disponible si nécessaire mais non utilisée par défaut
+    public void stopNote (int note){
+        MediaPlayer mediaPlayer = playerMap.get(note);
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            playerMap.remove(note);
         }
     }
+}
