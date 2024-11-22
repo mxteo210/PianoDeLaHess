@@ -11,6 +11,7 @@ public class AudioSoundPlayer {
 
     // Map des noms de fichiers associés aux notes
     private static final SparseArray<String> SOUND_MAP = new SparseArray<>();
+
     static {
         SOUND_MAP.put(1, "note_do.mp3");
         SOUND_MAP.put(2, "note_re.mp3");
@@ -57,35 +58,23 @@ public class AudioSoundPlayer {
                     mediaPlayer.prepare();
                     mediaPlayer.start();
 
-                    // Définir un Listener pour libérer la ressource après lecture
-                    mediaPlayer.setOnCompletionListener(mp -> {
-                        mp.release();
-                        playerMap.remove(note); // Supprime le MediaPlayer de la map après usage
-                    });
-
-                    // Sauvegarde l'instance pour référence
-                    playerMap.put(note, mediaPlayer);
+                    // Libère le MediaPlayer après la lecture complète
+                    mediaPlayer.setOnCompletionListener(MediaPlayer::release);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+        }}
+
+        // Supprime l'option d'arrêt manuel (inutile si le fichier joue toujours entièrement)
+        // Fonction disponible si nécessaire mais non utilisée par défaut
+        public void stopNote (int note){
+            MediaPlayer mediaPlayer = playerMap.get(note);
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                playerMap.remove(note);
+            }
         }
     }
-
-    // Arrête une note si elle est en cours
-    public void stopNote(int note) {
-        MediaPlayer mediaPlayer = playerMap.get(note);
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            playerMap.remove(note);
-        }
-    }
-
-    // Vérifie si une note est en cours de lecture
-    public boolean isNotePlaying(int note) {
-        MediaPlayer mediaPlayer = playerMap.get(note);
-        return mediaPlayer != null && mediaPlayer.isPlaying();
-    }
-}

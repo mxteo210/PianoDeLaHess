@@ -82,32 +82,23 @@ public class PianoView extends View {
         int action = event.getAction();
         boolean isDownAction = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE;
 
+
         for (int touchIndex = 0; touchIndex < event.getPointerCount(); touchIndex++) {
             float x = event.getX(touchIndex);
             float y = event.getY(touchIndex);
 
-            Key k = keyForCoords(x,y);
+            Key k = keyForCoords(x, y);
 
-            if (k != null) {
-                k.down = isDownAction;
+            if (k != null && isDownAction && !k.isPlaying) {
+                k.down = true;
+                k.isPlaying = true; // Marque la note comme en cours de lecture
+                soundPlayer.playNote(k.sound);
+                invalidate();
             }
         }
 
-        ArrayList<Key> tmp = new ArrayList<>(whites);
-        tmp.addAll(blacks);
-
-        for (Key k : tmp) {
-            if (k.down) {
-                if (!soundPlayer.isNotePlaying(k.sound)) {
-                    soundPlayer.playNote(k.sound);
-                    invalidate();
-                } else {
-                    releaseKey(k);
-                }
-            } else {
-                soundPlayer.stopNote(k.sound);
-                releaseKey(k);
-            }
+        if (action == MotionEvent.ACTION_UP) {
+            resetKeys();
         }
 
         return true;
@@ -129,14 +120,15 @@ public class PianoView extends View {
         return null;
     }
 
-    private void releaseKey(final Key k) {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                k.down = false;
-                handler.sendEmptyMessage(0);
-            }
-        }, 100);
+    private void resetKeys() {
+        ArrayList<Key> allKeys = new ArrayList<>(whites);
+        allKeys.addAll(blacks);
+
+        for (Key k : allKeys) {
+            k.down = false;
+            k.isPlaying = false; // Réinitialise l'état de lecture
+        }
+        invalidate();
     }
 
     private Handler handler = new Handler() {
@@ -145,4 +137,20 @@ public class PianoView extends View {
             invalidate();
         }
     };
+
+    // Classe Key modifiée avec la propriété isPlaying
+    private static class Key {
+        RectF rect;
+        int sound;
+        boolean down;
+        boolean isPlaying; // Indique si la note est en cours de lecture
+
+        Key(RectF rect, int sound) {
+            this.rect = rect;
+            this.sound = sound;
+            this.down = false;
+            this.isPlaying = false;
+        }
+    }
 }
+
