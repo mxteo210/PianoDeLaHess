@@ -46,19 +46,85 @@ public class AudioSoundPlayer {
             case "Guitare":
                 SOUND_MAP.put(1, "guitar_do.mp3");
                 SOUND_MAP.put(2, "guitar_re.mp3");
+                SOUND_MAP.put(3, "guitar_mi.mp3");
+                SOUND_MAP.put(4, "guitar_fa.mp3");
+                SOUND_MAP.put(5, "guitar_sol.mp3");
+                SOUND_MAP.put(6, "guitar_la.mp3");
+                SOUND_MAP.put(7, "guitar_si.mp3");
+                SOUND_MAP.put(8, "guitar_second_do.mp3");
+                SOUND_MAP.put(9, "guitar_second_re.mp3");
+                SOUND_MAP.put(10, "guitar_second_mi.mp3");
+                SOUND_MAP.put(11, "guitar_second_fa.mp3");
+                SOUND_MAP.put(12, "guitar_second_sol.mp3");
+                SOUND_MAP.put(13, "guitar_second_la.mp3");
+                SOUND_MAP.put(14, "guitar_second_si.mp3");
+                SOUND_MAP.put(15, "guitar_do_dies.mp3");
+                SOUND_MAP.put(16, "guitar_re_dies.mp3");
+                SOUND_MAP.put(17, "guitar_fa_dies.mp3");
+                SOUND_MAP.put(18, "guitar_sol_dies.mp3");
+                SOUND_MAP.put(19, "guitar_la_dies.mp3");
+                SOUND_MAP.put(20, "guitar_second_do_dies.mp3");
+                SOUND_MAP.put(21, "guitar_second_re_dies.mp3");
+                SOUND_MAP.put(22, "guitar_second_fa_dies.mp3");
+                SOUND_MAP.put(23, "guitar_second_sol_dies.mp3");
+                SOUND_MAP.put(24, "guitar_second_la_dies.mp3");
                 // Ajouter les autres sons de guitare
                 break;
 
-            case "Violoncelle":
-                SOUND_MAP.put(1, "cello_do.mp3");
-                SOUND_MAP.put(2, "cello_re.mp3");
+            case "Violons":
+                SOUND_MAP.put(1, "string_do.mp3");
+                SOUND_MAP.put(2, "string_re.mp3");
+                SOUND_MAP.put(3, "string_mi.mp3");
+                SOUND_MAP.put(4, "string_fa.mp3");
+                SOUND_MAP.put(5, "string_sol.mp3");
+                SOUND_MAP.put(6, "string_la.mp3");
+                SOUND_MAP.put(7, "string_si.mp3");
+                SOUND_MAP.put(8, "string_second_do.mp3");
+                SOUND_MAP.put(9, "string_second_re.mp3");
+                SOUND_MAP.put(10, "string_second_mi.mp3");
+                SOUND_MAP.put(11, "string_second_fa.mp3");
+                SOUND_MAP.put(12, "string_second_sol.mp3");
+                SOUND_MAP.put(13, "string_second_la.mp3");
+                SOUND_MAP.put(14, "string_second_si.mp3");
+                SOUND_MAP.put(15, "string_do_dies.mp3");
+                SOUND_MAP.put(16, "string_re_dies.mp3");
+                SOUND_MAP.put(17, "string_fa_dies.mp3");
+                SOUND_MAP.put(18, "string_sol_dies.mp3");
+                SOUND_MAP.put(19, "string_la_dies.mp3");
+                SOUND_MAP.put(20, "string_second_do_dies.mp3");
+                SOUND_MAP.put(21, "string_second_re_dies.mp3");
+                SOUND_MAP.put(22, "string_second_fa_dies.mp3");
+                SOUND_MAP.put(23, "string_second_sol_dies.mp3");
+                SOUND_MAP.put(24, "string_second_la_dies.mp3");
                 // Ajouter les autres sons de violoncelle
                 break;
 
-            case "Flûte":
-                SOUND_MAP.put(1, "flute_do.mp3");
-                SOUND_MAP.put(2, "flute_re.mp3");
+            case "Bass":
+                SOUND_MAP.put(1, "bass_do.mp3");
+                SOUND_MAP.put(2, "bass_re.mp3");
                 // Ajouter les autres sons de flûte
+                SOUND_MAP.put(3, "bass_mi.mp3");
+                SOUND_MAP.put(4, "bass_fa.mp3");
+                SOUND_MAP.put(5, "bass_sol.mp3");
+                SOUND_MAP.put(6, "bass_la.mp3");
+                SOUND_MAP.put(7, "bass_si.mp3");
+                SOUND_MAP.put(8, "bass_second_do.mp3");
+                SOUND_MAP.put(9, "bass_second_re.mp3");
+                SOUND_MAP.put(10, "bass_second_mi.mp3");
+                SOUND_MAP.put(11, "bass_second_fa.mp3");
+                SOUND_MAP.put(12, "bass_second_sol.mp3");
+                SOUND_MAP.put(13, "bass_second_la.mp3");
+                SOUND_MAP.put(14, "bass_second_si.mp3");
+                SOUND_MAP.put(15, "bass_do_dies.mp3");
+                SOUND_MAP.put(16, "bass_re_dies.mp3");
+                SOUND_MAP.put(17, "bass_fa_dies.mp3");
+                SOUND_MAP.put(18, "bass_sol_dies.mp3");
+                SOUND_MAP.put(19, "bass_la_dies.mp3");
+                SOUND_MAP.put(20, "bass_second_do_dies.mp3");
+                SOUND_MAP.put(21, "bass_second_re_dies.mp3");
+                SOUND_MAP.put(22, "bass_second_fa_dies.mp3");
+                SOUND_MAP.put(23, "bass_second_sol_dies.mp3");
+                SOUND_MAP.put(24, "bass_second_la_dies.mp3");
                 break;
         }
     }

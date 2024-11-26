@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner instrumentSpinner = findViewById(R.id.instrument_spinner);
 
         // Liste des instruments disponibles
-        String[] instruments = {"Piano", "Guitare", "Violoncelle", "Flûte"};
+        String[] instruments = {"Piano", "Guitare", "Violons", "Bass"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, instruments);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         instrumentSpinner.setAdapter(adapter);
